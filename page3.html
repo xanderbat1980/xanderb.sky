@@ -1,0 +1,411 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Politique - Article</title>
+    <style>
+        body, html {
+            margin: 0;
+            padding: 0;
+            height: 100%;
+            overflow-x: hidden;
+            background: linear-gradient(to right, #1f4037, #99f2c8);
+            font-family: 'Arial', sans-serif;
+            color: white;
+        }
+
+        .menu {
+            position: fixed;
+            top: 50%;
+            left: 0;
+            transform: translateY(-50%);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            background: rgba(0, 0, 0, 0.8);
+            padding: 20px;
+            border-radius: 0 10px 10px 0;
+            box-shadow: 0 0 15px rgba(0, 0, 0, 0.7);
+            z-index: 1000;
+        }
+
+        .menu-item {
+            margin: 15px 0;
+            cursor: pointer;
+            transition: transform 0.3s, color 0.3s;
+            text-decoration: none;
+            color: white;
+            font-size: 1.2em;
+        }
+
+        .menu-item:hover {
+            transform: scale(1.2);
+            color: #99f2c8;
+        }
+
+        .content {
+            margin-left: 200px;
+            padding: 20px;
+            display: flex;
+            justify-content: space-between;
+        }
+
+        .main-article {
+            width: 60%;
+            background: rgba(0, 0, 0, 0.7);
+            padding: 30px;
+            border-radius: 15px;
+            box-shadow: 0 0 20px rgba(0, 0, 0, 0.7);
+            transform: perspective(1000px) rotateY(10deg);
+            transition: transform 0.3s;
+        }
+
+        .main-article:hover {
+            transform: perspective(1000px) rotateY(0);
+        }
+
+        .main-article h1 {
+            margin-top: 0;
+            border-bottom: 3px solid #99f2c8;
+            font-size: 2em;
+        }
+
+        .main-article .photo-container {
+            margin: 20px 0;
+            border: 5px solid #99f2c8;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.7);
+            overflow: hidden;
+            width: 80%;
+            max-width: 600px;
+            height: auto;
+        }
+
+        .main-article img {
+            width: 100%;
+            height: auto;
+            border-radius: 10px;
+        }
+
+        .related-articles {
+            width: 30%;
+            margin-left: 20px;
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+        }
+
+        .related-articles .article {
+            background: rgba(0, 0, 0, 0.7);
+            padding: 10px;
+            border-radius: 15px;
+            display: flex;
+            align-items: center;
+            transition: transform 0.3s, background 0.3s;
+            box-shadow: 0 0 15px rgba(0, 0, 0, 0.7);
+        }
+
+        .related-articles .article:hover {
+            transform: scale(1.05);
+            background: rgba(0, 0, 0, 0.8);
+        }
+
+        .related-articles img {
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            margin-right: 15px;
+        }
+
+        .tools-section, .comment-section {
+            width: calc(70% - 200px);
+            margin-top: 40px;
+            margin-left: 200px;
+            background: rgba(0, 0, 0, 0.7);
+            padding: 20px;
+            border-radius: 15px;
+            box-shadow: 0 0 20px rgba(0, 0, 0, 0.7);
+        }
+
+        .tools-section h2, .comment-section h2 {
+            margin-top: 0;
+            border-bottom: 3px solid #99f2c8;
+            font-size: 1.5em;
+        }
+
+        .tools-section .tool, .comment {
+            display: flex;
+            align-items: center;
+            margin: 10px 0;
+            padding: 10px;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 10px;
+            transition: transform 0.3s, background 0.3s;
+        }
+
+        .tools-section .tool:hover, .comment:hover {
+            transform: scale(1.05);
+            background: rgba(255, 255, 255, 0.2);
+        }
+
+        .tools-section img, .comment img {
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            margin-right: 15px;
+        }
+
+        .footer {
+            margin-top: 40px;
+            padding: 20px;
+            background: rgba(0, 0, 0, 0.9);
+            border-radius: 10px;
+            box-shadow: 0 0 15px rgba(0, 0, 0, 0.7);
+            text-align: center;
+        }
+
+        .footer p {
+            margin: 0;
+        }
+
+        .icon-circle {
+            position: fixed;
+            top: 10px;
+            right: 10px;
+            width: 70px;
+            height: 70px;
+            background: #99f2c8;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.7);
+            cursor: pointer;
+            transition: transform 0.3s, background 0.3s;
+            z-index: 1001;
+        }
+
+        .icon-circle:hover {
+            transform: scale(1.2);
+            background: #1f4037;
+        }
+
+        .icon-circle img {
+            width: 40px;
+            height: 40px;
+        }
+
+        .qr-code {
+            position: fixed;
+            bottom: 10px;
+            right: 10px;
+            width: 100px;
+            height: 100px;
+            background: white;
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.7);
+            cursor: pointer;
+            transition: transform 0.3s;
+            z-index: 1001;
+        }
+
+        .qr-code:hover {
+            transform: scale(1.2);
+        }
+
+        .qr-code img {
+            width: 80px;
+            height: 80px;
+        }
+
+        .popup {
+            display: none;
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            background: rgba(0, 0, 0, 0.8);
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.7);
+            z-index: 1002;
+            text-align: center;
+        }
+
+        .popup input {
+            padding: 10px;
+            margin-top: 10px;
+            border: none;
+            border-radius: 5px;
+        }
+
+        .popup button {
+            padding: 10px 20px;
+            margin-top: 10px;
+            background: #99f2c8;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background 0.3s;
+        }
+
+        .popup button:hover {
+            background: #1f4037;
+        }
+
+        .popup .message {
+            margin-top: 10px;
+            color: #99f2c8;
+        }
+
+        .popup .close-btn {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            background: transparent;
+            border: none;
+            font-size: 1.5em;
+            color: white;
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body>
+    <div class="menu">
+        <a href="index.html" class="menu-item">Home</a>
+        <a href="#section1" class="menu-item">Technology</a>
+        <a href="#section2" class="menu-item">Science</a>
+        <a href="#trump" class="menu-item">Trump</a>
+        <a href="#politics" class="menu-item">Politics</a>
+        <a href="#environment" class="menu-item">Environment</a>
+        <a href="#cryptos" class="menu-item">Cryptos</a>
+        <a href="#sports" class="menu-item">Sports</a>
+        <a href="#health" class="menu-item">Health</a>
+        <a href="#economy" class="menu-item">Economy</a>
+        <a href="#xxx" class="menu-item">xxx</a>
+        <a href="#yyy" class="menu-item">yyy</a>
+        <a href="#featured-articles" class="menu-item">Featured Articles</a>
+        <a href="#comments" class="menu-item">Comments</a>
+        <a href="#" class="menu-item">About</a>
+        <a href="#" class="menu-item">Contact</a>
+    </div>
+
+    <div class="icon-circle" onclick="showPopup()">
+        <img src="https://via.placeholder.com/30" alt="Icon">
+    </div>
+
+    <div class="qr-code" onclick="showPopup()">
+        <img src="https://via.placeholder.com/80" alt="QR Code">
+    </div>
+
+    <div class="content">
+        <div class="main-article">
+            <h1>L'impact de la Politique Moderne</h1>
+            <div class="photo-container">
+                <img src="https://via.placeholder.com/600x400" alt="Main Article Image">
+            </div>
+            <p>
+                Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer nec odio. Praesent libero.
+                Sed cursus ante dapibus diam. Sed nisi. Nulla quis sem at nibh elementum imperdiet. Duis sagittis ipsum.
+                Praesent mauris. Fusce nec tellus sed augue semper porta. Mauris massa. Vestibulum lacinia arcu eget nulla.
+                Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos.
+            </p>
+            <p>
+                Curabitur sodales ligula in libero. Sed dignissim lacinia nunc. Curabitur tortor. Pellentesque nibh.
+                Aenean quam. In scelerisque sem at dolor. Maecenas mattis. Sed convallis tristique sem. Proin ut ligula vel nunc egestas porttitor.
+                Morbi lectus risus, iaculis vel, suscipit quis, luctus non, massa. Fusce ac turpis quis ligula lacinia aliquet.
+                Mauris ipsum. Nulla metus metus, ullamcorper vel, tincidunt sed, euismod in, nibh. Quisque volutpat condimentum velit.
+                Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos.
+            </p>
+        </div>
+
+        <div class="related-articles">
+            <h2>Articles Connexes</h2>
+            <div class="article">
+                <img src="https://via.placeholder.com/50" alt="Article 1">
+                <p>Article Connexe 1</p>
+            </div>
+            <div class="article">
+                <img src="https://via.placeholder.com/50" alt="Article 2">
+                <p>Article Connexe 2</p>
+            </div>
+            <div class="article">
+                <img src="https://via.placeholder.com/50" alt="Article 3">
+                <p>Article Connexe 3</p>
+            </div>
+        </div>
+    </div>
+
+    <div class="tools-section">
+        <h2>Outils Pratiques</h2>
+        <div class="tool">
+            <img src="https://via.placeholder.com/50" alt="Tool 1">
+            <p>Outil Pratique 1</p>
+        </div>
+        <div class="tool">
+            <img src="https://via.placeholder.com/50" alt="Tool 2">
+            <p>Outil Pratique 2</p>
+        </div>
+        <div class="tool">
+            <img src="https://via.placeholder.com/50" alt="Tool 3">
+            <p>Outil Pratique 3</p>
+        </div>
+    </div>
+
+    <div class="comment-section" id="comments">
+        <h2>Commentaires</h2>
+        <div class="comment">
+            <img src="https://via.placeholder.com/50" alt="User 1">
+            <p>User 1: This is a comment.</p>
+        </div>
+        <div class="comment">
+            <img src="https://via.placeholder.com/50" alt="User 2">
+            <p>User 2: This is another comment.</p>
+        </div>
+        <div class="comment">
+            <img src="https://via.placeholder.com/50" alt="User 3">
+            <p>User 3: This is yet another comment.</p>
+        </div>
+    </div>
+
+    <div class="footer">
+        <p>&copy; 2024 Futuristic Blog. All rights reserved.</p>
+    </div>
+
+    <div class="popup" id="passwordPopup">
+        <button class="close-btn" onclick="hidePopup()">x</button>
+        <h2>Enter Password</h2>
+        <input type="password" id="passwordInput" placeholder="Password">
+        <button onclick="checkPassword()">Submit</button>
+        <div class="message" id="popupMessage"></div>
+    </div>
+
+    <script>
+        function showPopup() {
+            document.getElementById('passwordPopup').style.display = 'block';
+        }
+
+        function hidePopup() {
+            document.getElementById('passwordPopup').style.display = 'none';
+        }
+
+        function checkPassword() {
+            const password = document.getElementById('passwordInput').value;
+            const message = document.getElementById('popupMessage');
+
+            if (password === 'correct_password') {
+                message.textContent = 'Vous avez désormais accès au fichier secret';
+                setTimeout(() => {
+                    window.location.href = 'classified.html';
+                }, 2000);
+            } else {
+                message.textContent = 'Mot de passe incorrect';
+            }
+        }
+    </script>
+</body>
+</html>
