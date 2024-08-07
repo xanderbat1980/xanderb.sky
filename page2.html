@@ -1,0 +1,287 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Futuristic Blog Page</title>
+    <style>
+        body, html {
+            margin: 0;
+            padding: 0;
+            height: 100%;
+            overflow-x: hidden;
+            background: #ff7e5f; /* Couleur uniforme de fond */
+            font-family: 'Arial', sans-serif;
+            color: white;
+        }
+
+        .menu {
+            position: fixed;
+            top: 50%;
+            left: 0;
+            transform: translateY(-50%);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            background: rgba(0, 0, 0, 0.7);
+            padding: 20px;
+            border-radius: 0 10px 10px 0;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+            z-index: 1000;
+        }
+
+        .menu-item {
+            margin: 20px 0;
+            cursor: pointer;
+            transition: transform 0.3s, color 0.3s;
+            text-decoration: none;
+            color: white;
+            font-size: 1.2em;
+        }
+
+        .menu-item:hover {
+            transform: scale(1.1);
+            color: #ff7e5f;
+        }
+
+        .ticker {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 50px;
+            background: rgba(0, 0, 0, 0.7);
+            display: flex;
+            align-items: center;
+            overflow: hidden;
+            white-space: nowrap;
+            z-index: 1000;
+        }
+
+        .ticker-content {
+            display: inline-block;
+            padding-left: 100%;
+            animation: ticker 10s linear infinite;
+            font-size: 1.2em;
+        }
+
+        @keyframes ticker {
+            0% {
+                transform: translateX(0);
+            }
+            100% {
+                transform: translateX(-100%);
+            }
+        }
+
+        .content {
+            margin-left: 150px;
+            padding: 20px;
+            box-sizing: border-box;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .section {
+            width: 80%;
+            margin-bottom: 40px;
+            background: rgba(0, 0, 0, 0.5);
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+            transition: transform 0.3s;
+        }
+
+        .section:hover {
+            transform: scale(1.05);
+        }
+
+        .section h2 {
+            margin-top: 0;
+            border-bottom: 2px solid #ff7e5f;
+            font-size: 1.5em;
+        }
+
+        .sub-section {
+            margin-top: 20px;
+        }
+
+        .tools {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+        }
+
+        .tool {
+            background: rgba(255, 255, 255, 0.1);
+            padding: 10px;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: transform 0.3s, background 0.3s;
+        }
+
+        .tool:hover {
+            transform: scale(1.1);
+            background: rgba(255, 255, 255, 0.2);
+        }
+
+        .featured-articles {
+            display: flex;
+            overflow-x: auto;
+            gap: 20px;
+            padding: 10px 0;
+        }
+
+        .article {
+            min-width: 200px;
+            background: rgba(0, 0, 0, 0.5);
+            padding: 10px;
+            border-radius: 10px;
+            cursor: pointer;
+            transition: transform 0.3s, background 0.3s;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+        }
+
+        .article img {
+            width: 100%;
+            height: auto;
+            border-radius: 10px;
+        }
+
+        .article:hover {
+            transform: scale(1.1);
+            background: rgba(0, 0, 0, 0.7);
+        }
+
+        .comment-section {
+            margin-top: 20px;
+        }
+
+        .comment {
+            display: flex;
+            align-items: center;
+            margin-bottom: 10px;
+        }
+
+        .comment img {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            margin-right: 10px;
+        }
+    </style>
+</head>
+<body>
+    <div class="menu">
+        <a href="#section1" class="menu-item">Technology</a>
+        <a href="#section2" class="menu-item">Science</a>
+        <a href="#tools" class="menu-item">Tools</a>
+        <a href="#featured-articles" class="menu-item">Featured Articles</a>
+        <a href="#comments" class="menu-item">Comments</a>
+        <a href="#" class="menu-item">Home</a>
+        <a href="#" class="menu-item">About</a>
+        <a href="#" class="menu-item">Contact</a>
+    </div>
+
+    <div class="ticker">
+        <div class="ticker-content">Featured Topics: AI, Quantum Computing, Future of Technology, Space Exploration, Sustainable Energy...</div>
+    </div>
+
+    <div class="content">
+        <!-- Featured Articles Section -->
+        <div class="section" id="featured-articles">
+            <h2>Featured Articles</h2>
+            <div class="featured-articles">
+                <div class="article">
+                    <img src="https://via.placeholder.com/150" alt="Article 1">
+                    <p>Article 1</p>
+                </div>
+                <div class="article">
+                    <img src="https://via.placeholder.com/150" alt="Article 2">
+                    <p>Article 2</p>
+                </div>
+                <div class="article">
+                    <img src="https://via.placeholder.com/150" alt="Article 3">
+                    <p>Article 3</p>
+                </div>
+                <div class="article">
+                    <img src="https://via.placeholder.com/150" alt="Article 4">
+                    <p>Article 4</p>
+                </div>
+                <div class="article">
+                    <img src="https://via.placeholder.com/150" alt="Article 5">
+                    <p>Article 5</p>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Section 1 -->
+        <div class="section" id="section1">
+            <h2>Section 1: Technology</h2>
+            <div class="sub-section">
+                <h3>Sub-section 1.1</h3>
+                <p>Content for sub-section 1.1 goes here...</p>
+            </div>
+            <div class="sub-section">
+                <h3>Sub-section 1.2</h3>
+                <p>Content for sub-section 1.2 goes here...</p>
+            </div>
+        </div>
+
+        <!-- Section 2 -->
+        <div class="section" id="section2">
+            <h2>Section 2: Science</h2>
+            <div class="sub-section">
+                <h3>Sub-section 2.1</h3>
+                <p>Content for sub-section 2.1 goes here...</p>
+            </div>
+            <div class="sub-section">
+                <h3>Sub-section 2.2</h3>
+                <p>Content for sub-section 2.2 goes here...</p>
+            </div>
+        </div>
+
+        <!-- Tools Section -->
+        <div class="section" id="tools">
+            <h2>Practical Tools</h2>
+            <div class="tools">
+                <div class="tool">Tool 1</div>
+                <div class="tool">Tool 2</div>
+                <div class="tool">Tool 3</div>
+                <div class="tool">Tool 4</div>
+                <div class="tool">Tool 5</div>
+            </div>
+        </div>
+
+        <!-- Comments Section -->
+        <div class="section" id="comments">
+            <h2>Comments</h2>
+            <div class="comment-section">
+                <div class="comment">
+                    <img src="https://via.placeholder.com/40" alt="User 1">
+                    <p>User 1: This is a comment.</p>
+                </div>
+                <div class="comment">
+                    <img src="https://via.placeholder.com/40" alt="User 2">
+                    <p>User 2: This is another comment.</p>
+                </div>
+                <!-- Add more comments as needed -->
+            </div>
+        </div>
+    </div>
+
+    <script>
+        function changeImage(subjectId, imageUrl) {
+            document.querySelector(`#${subjectId} img`).src = imageUrl;
+        }
+
+        // Double click event to open a new page
+        document.querySelectorAll('.article').forEach(article => {
+            article.addEventListener('dblclick', () => {
+                window.open('newpage.html', '_blank');
+            });
+        });
+    </script>
+</body>
+</html>
